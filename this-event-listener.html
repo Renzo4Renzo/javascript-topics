@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="testBtn">TEST</button>
+  </body>
+  <script>
+    document.getElementById("testBtn").addEventListener("click", function () {
+      console.log("EVENT LISTENER:", this); //EVENT LISTENER: <button id="testBtn"></button>
+    });
+  </script>
+</html>
