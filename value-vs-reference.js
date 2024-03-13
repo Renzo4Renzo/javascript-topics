@@ -1,11 +1,11 @@
 /*
     VALUE
-    Values types store the actual value in the variable (stored in the stack).
+    Values types store the actual value in the variable (stored in the call stack).
     Primitives are passed by value.
     Primitives are inmutable (they do not have methods or properties than can alter them).
 
     REFERENCE
-    Reference types store a reference to the actual object in the variable (reference stored in the stack, object stored in the heap).
+    Reference types store a reference to the actual object in the variable (reference stored in the call stack, object stored in the memory heap).
     Objects (arrays included) are passed by reference.
     Objects are mutable (certain methods can alter them).
 */

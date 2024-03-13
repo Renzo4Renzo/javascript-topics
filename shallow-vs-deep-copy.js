@@ -98,24 +98,3 @@ deepCloneOF.key1 = 10;
 deepCloneOF.key3.push(4);
 console.log("deepOriginalOF:", deepOriginalOF);
 console.log("deepCloneOF:", deepCloneOF);
-
-console.log("\n===============IMPURE FUNCTION============"); //It mutates the data, creating a side-effect
-const addToScoreHistory = (array, score) => {
-  array.push(score);
-  return array;
-};
-//NOTICE: "Const" does not make the array inmutable
-const arrayIF = [1, 2, 3];
-addToScoreHistory(arrayIF, 4);
-console.log("arrayIF:", arrayIF);
-
-console.log("\n===============CREATING A PURE FUNCTION============");
-
-const pureAddToScoreHistory = function (array, score, cloneFunction) {
-  const newArray = cloneFunction(array);
-  newArray.push(score);
-  return newArray;
-};
-const scoreInitial = [10, 20, 30];
-const pureScoreHistory = pureAddToScoreHistory(scoreInitial, 40, deepClone);
-console.log("pureScoreHistory:", pureScoreHistory);
