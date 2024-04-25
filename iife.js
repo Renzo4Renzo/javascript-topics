@@ -7,7 +7,7 @@
     Named IIFE can be helpful for recursive calls or debugging.
 
     BENEFITS
-    1. Isolate code and keep private variable/method (you can create modules and closures).
+    1. Isolate code and keep private variable/methods (you can create modules and closures).
     2. Does not polute the global space.
     3. Managing initialization & configure settings.
 */
@@ -58,6 +58,7 @@ const Calculator = (() => {
   let calcResult = 0;
 
   function add(...args) {
+    calcResult = 0;
     for (arg of args) {
       calcResult += arg;
     }
