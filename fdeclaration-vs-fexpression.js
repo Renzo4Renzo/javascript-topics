@@ -6,14 +6,14 @@
 
   Differences:
     1. You can use a DECLARED FUNCTION before the line it was initialized, but not an EXPRESSED FUNCTION (This happens because the function is hoisted)
-    2. You can only use a EXPRESSED FUNCTION if:
-       -You assign it to a variable
-       -You use it on an IIFE (Immediately Invoked Function Expressions)
-       -You use it as a callback function (forEach, etc.)
-    3. Arrow function can only be EXPRESSED, not DECLARED
+    2. You can only use a EXPRESSED FUNCTION when you:
+       - Assign it to a variable
+       - Create an IIFE (Immediately Invoked Function Expressions)
+       - Pass it as a parameter in a callback function (forEach, etc.)
+    3. Arrow functions can only be EXPRESSED, not DECLARED
 */
 
-// 1. You can use a DECLARED FUNCTION before the line it was initialized
+console.log("=========DECLARED EXPRESSION: THEY CAN BE USED BEFORE THE LINE IT WAS INITIALIZED (HOISTING)=========");
 const result = sum(20, 50);
 console.log(result);
 
@@ -28,18 +28,19 @@ const sum2 = function (num1, num2) {
   return num1 + num2;
 };
 
-// 2. You use it on an IIFE (Immediately Invoked Function Expressions)
+console.log("\n=========FUNCTION EXPRESSION: CREATE AN IIFE=========");
 (function () {
   console.log("Text inside IIFE printed");
 })();
 
-// 2. You use it as a callback function (forEach, etc.)
+console.log("\n=========FUNCTION EXPRESSION: PASS IT AS PARAMETER IN A CALLBACK FUNCTION=========");
 const array = [1, 2, 3, 4, 5];
 array.forEach(function (item) {
   console.log(item);
 });
 
-// 3. Arrow function can only be EXPRESSED, not DECLARED
+console.log("\n=========FUNCTION EXPRESSION: ARROW FUNCTIONS CAN ONLY BE EXPRESSED=========");
 const arrowFunction = (text) => {
   console.log(`Text: ${text}`);
 };
+arrowFunction("Yeah!");
