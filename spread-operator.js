@@ -13,8 +13,10 @@ console.log(...newArray);
 
 console.log("\n===============COPY ARRAY============");
 const menu = ["Pizza", "Rissoto", "Lasagna"];
-const mainMenuCopy = [...menu];
-console.log(mainMenuCopy);
+const menuCopy = [...menu];
+console.log("menu:", menu);
+console.log("menuCopy:", menuCopy);
+console.log("menu === menuCopy:", menu === menuCopy);
 
 console.log("\n===============JOINING ARRAYS============");
 const arrayToJoin1 = [1, 2, 3];
@@ -27,7 +29,7 @@ const stringRenzo = "Renzo";
 const letters = [...stringRenzo];
 console.log(letters);
 
-console.log("\n===============ONLY USE IT IN PLACES WHERE VALUES COULD BE SEPARATED BY COMMAS============");
+console.log("\n===============ONLY USE IT WHERE VALUES COULD BE SEPARATED BY COMMAS============");
 const stringRandom = "Random";
 console.log(`${[...stringRandom]}`);
 // console.log(`${...stringRandom}!`); //Error!

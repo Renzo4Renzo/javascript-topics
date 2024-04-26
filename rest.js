@@ -1,34 +1,9 @@
 /*
-    REST (...)
+    REST PATTERN (...)
     Gathers a list of values into an array.
-    If used in the parameters of a function, it's called Rest Parameters.
-    If used in assignments, it's called Rest Property and should be at the left side of the assignement.
-    Should always be the last parameter. Only one rest is allowed.
+      - Rest Parameters: When used in the parameters of a function. Should always be the last parameter. Only one is allowed.
+      - Rest Property: When used in assignments. Should be at the left side of the assignement.
 */
-
-console.log("===============REST PATTERN============");
-const [first, , ...others] = [1, 2, 3, 4, 5]; //NOTICE: You can leave an empty space if you don't want to use a variable
-console.log("first:", first);
-console.log("Others:", others);
-
-console.log("\n===============REST IN OBJECTS============");
-const openingHours = {
-  thu: {
-    open: 12,
-    close: 22,
-  },
-  fri: {
-    open: 11,
-    close: 23,
-  },
-  sat: {
-    open: 0,
-    close: 24,
-  },
-};
-const { sat, ...weekdays } = openingHours;
-console.log("sat:", sat);
-console.log("weekdays:", weekdays);
 
 console.log("\n===============REST PARAMETERS============");
 const add = function (...numbers) {
@@ -50,3 +25,27 @@ const orderPizza = (mainIngredient, ...otherIngredients) => {
 };
 orderPizza("Tuna");
 orderPizza("Bread", "Onion", "Cheese");
+
+console.log("===============REST PROPERTY: ARRAYS============");
+const [first, , ...others] = [1, 2, 3, 4, 5]; //NOTICE: You can leave an empty space if you don't want to use a variable
+console.log("first:", first);
+console.log("Others:", others);
+
+console.log("\n===============REST PROPERTY: OBJECTS============");
+const openingHours = {
+  thu: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0,
+    close: 24,
+  },
+};
+const { sat, ...weekdays } = openingHours;
+console.log("sat:", sat);
+console.log("weekdays:", weekdays);
