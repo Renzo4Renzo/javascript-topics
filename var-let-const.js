@@ -50,3 +50,14 @@ if (true) {
 }
 console.log("a:", a);
 console.log("b:", b);
+
+/*
+  NOTE: The following code print "5" five times because "var" is not block-scoped, so when the event loop returns the timeouts to the main thread, the final value of "i" is used for each callback.
+  You have to use "let i=0" if you want to print 0,1,2,... instead.
+*/
+console.log("\n===============FOR LOOP: VAR IS NOT BLOCKED SCOPED============");
+for (var i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, i * 100);
+}
