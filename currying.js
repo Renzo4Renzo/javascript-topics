@@ -5,7 +5,7 @@
     Useful to create partially applied functions.
 */
 
-console.log("==============CURRYING==============");
+console.log("==============SIMPLE CURRYING: SUM==============");
 function simpleCurry(someFunction) {
   return function (a) {
     return function (b) {
@@ -22,10 +22,12 @@ let curriedSum = simpleCurry(sum);
 
 console.log(curriedSum(1)(2));
 
-console.log("==============LOGGING==============");
+console.log("==============ADVANCED CURRYING: LOGGING==============");
 const advancedCurry = (someFunc) => {
   const expectedArgs = someFunc.length;
+  // console.log("expectedArgs:", expectedArgs); //Logs once
   const curried = (...args) => {
+    // console.log("args:", ...args); //Logs as many times as needed to get args.length >= expectedArgs
     return args.length >= expectedArgs ? someFunc(...args) : (...args2) => curried(...args.concat(args2));
   };
   return curried;

@@ -4,11 +4,11 @@
   A function that uses variables from the parent scope.
 
   WHAT DO YOU NEED IT FOR?
-  Closures rememeber the outer function scope even after creation time, so they can work with variables created in that scope.
+  Closures remember the outer function scope even after creation time, so they can work with variables created in that scope.
   You can reuse functions: just passing different parameters to the outer function. 
 */
 
-/* EXAMPLE 1 */
+console.log("============RETURNING AN OBJECT============");
 function human(name) {
   function sayHi() {
     console.log(`Hi I'm ${name}`);
@@ -27,7 +27,7 @@ const ibeth = human("Ibeth");
 diego.sayHi();
 ibeth.sayHowYouFeel();
 
-/* EXAMPLE 2 */
+console.log("\n============RETURNING A FUNCTION============");
 function clickHandler(size) {
   return function () {
     console.log(`My size is ${size}px`);
@@ -37,7 +37,7 @@ function clickHandler(size) {
 buttonSize12 = clickHandler(12);
 buttonSize12();
 
-/* EXAMPLE 3 */
+console.log("\n============CLOSURES FOR CURRYING============");
 function sum(a) {
   return function (b) {
     return function (c) {
