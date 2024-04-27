@@ -3,15 +3,14 @@
         1. Regular functions HAVE the arguments object, arrow ones DON'T
         2. THIS keyword:
           -In regular functions, THIS points to the object that calls the function (it creates its own binding).
-          -In arrow functions, THIS points to what this was before the function was created (NOTE: Arrow functions SHOULDN'T be methods) (NOTE 2: Call, apply and bind don't work with arrow functions).
+          -In arrow functions, THIS points to what this was before the function was created (NOTE: Arrow functions SHOULDN'T be object methods) (NOTE 2: Call, apply and bind don't work with arrow functions).
         3. Regular functions CAN be used as constructors, arrow functions CAN'T (they will throw an error when called with "new" keyword)
         4. Regular functions CAN be EXPRESSED or DECLARED. Arrow function can only be EXPRESSED.
-        5. Regular functions can be used before the line they were initialized, but not arrow functions (This happens because the function is hoisted)
+        5. Regular functions can be used before the line they were initialized (due to hoisting), but not arrow functions.
         6. Regular functions CAN be used as generators, arrow functions CAN'T
 */
 
-/* 1. Regular functions HAVE the arguments object, arrow ones DON'T */
-
+console.log("==========ARROW FUNCTIONS DON'T HAVE THE ARGUMENTS OBJECT==========");
 function print1() {
   console.log(arguments);
 }
@@ -24,9 +23,7 @@ print1("hi", 400);
 /* NOTE: The arguments object in Node.js refers to the command-line arguments passed to the Node.js process, not the function arguments. Therefore the expected error shown below won't happen in Node.js */
 // print2("hey there", 100, false); // Uncaught ReferenceError: arguments is not defined
 
-/* 2. THIS keyword */
-
-// 2A -> Arrow functions SHOULDN'T be methods
+console.log("==========THIS KEYWORD: ARROW FUNCTION SHOULDN'T BE OBJECT METHODS==========");
 const obj1 = {
   name: "deeecode",
   age: 200,
@@ -45,7 +42,7 @@ const obj2 = {
 };
 obj2.print(); // Window -> Browser; Global Object -> Node.js
 
-// 2B -> Call, apply and bind don't work with arrow functions
+console.log("\n==========THIS KEYWORD: CALL, BIND AND APPLY DON'T WORK WITH ARROW FUNCTIONS==========");
 function outer(callback, obj) {
   callback.call(obj);
 }
@@ -59,13 +56,12 @@ function inner() {
 // Result with regular function: { name: "Renzo" }
 outer(inner, { name: "Renzo" });
 
-/* 3. Regular functions CAN be used as constructors, arrow functions CAN'T */
+console.log("\n==========ARROW FUNCTIONS CAN'T BE USED AS CONSTRUCTORS==========");
 
 // 3A
 class Animal1 {
-  constructor(name, numOfLegs) {
+  constructor(name) {
     this.name = name;
-    this.numOfLegs = numOfLegs;
   }
 
   sayName() {
@@ -73,18 +69,17 @@ class Animal1 {
   }
 }
 
-const Dog = new Animal1("Bingo", 4);
-const Bird = new Animal1("Steer", 2);
+const dog = new Animal1("Bingo");
+const bird = new Animal1("Steer");
 
-Dog.sayName(); // My name is Bingo
-Bird.sayName(); // My name is Steer
+dog.sayName(); // My name is Bingo
+bird.sayName(); // My name is Steer
 
 // 3B
 // class Animal2 {
 //   Constructor is interpreted as a field rather than a constructor
-//   constructor = (name, numOfLegs) => {
+//   constructor = (name) => {
 //     this.name = name
-//     this.numOfLegs = numOfLegs
 //   }
 
 //   sayName() {
@@ -94,9 +89,8 @@ Bird.sayName(); // My name is Steer
 
 // 3C
 class Animal3 {
-  constructor(name, numOfLegs) {
+  constructor(name) {
     this.name = name;
-    this.numOfLegs = numOfLegs;
   }
 
   sayName = () => {
@@ -104,9 +98,9 @@ class Animal3 {
   };
 }
 
-const Dog2 = new Animal3("Bingo", 4);
+const cat = new Animal3("Mufi");
 
-Dog2.sayName(); // My name is Bingo
+cat.sayName(); // My name is Mufi
 
 // 3D
 const sayHello = (name) => (this.name = name);
@@ -118,7 +112,7 @@ const sayHelloRF = function (name) {
 const renzo = new sayHelloRF("Renzo");
 console.log(renzo);
 
-/* 4. Regular functions CAN be EXPRESSED or DECLARED. Arrow function can only be EXPRESSED. */
+console.log("\n==========ARROW FUNCTIONS CAN ONLY BE EXPRESSED==========");
 
 function printHello1() {
   console.log("hello");
@@ -132,17 +126,14 @@ const printHello3 = () => {
   console.log("hello");
 };
 
-/* 5. Regular functions can be used before the line they were initialized, but not arrow functions (This happens because the function is hoisted) */
+console.log("\n==========ARROW FUNCTIONS ARE NOT HOISTED==========");
 
 printName1();
-console.log("printName1: hello");
+// printName2(); // ReferenceError: Cannot access 'printName2' before initialization
 
 function printName1() {
   console.log("printName1: I am Renzo");
 }
-
-// printName2(); // ReferenceError: Cannot access 'printName2' before initialization
-console.log("printName2: hello");
 
 const printName2 = () => {
   console.log("printName2: I am Renzo");
