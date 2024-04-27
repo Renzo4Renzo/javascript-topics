@@ -5,7 +5,7 @@
     It doesn't use the "new" keyword.
 */
 
-//Method 1: It works, but each object created has a copy of getFullName() which is not memory-efficient
+console.log("=========FACTORY: OBJECT METHODS ARE CREATED IN EACH INSTANCE (NOT MEMORY-EFFICIENT)===========");
 function createPerson(firstName, lastName) {
   return {
     firstName: firstName,
@@ -22,7 +22,7 @@ let person2 = createPerson("Valeria", "Diaz");
 console.log(person1.getFullName());
 console.log(person2.getFullName());
 
-//Method 2: Using Object.create() to assign the prototype to the object, this is memory -efficient
+console.log("\n=========FACTORY: PROTOTYPE ASSIGNED TO EACH INSTANCE (MEMORY-EFFICIENT)===========");
 const personActions = {
   getFullName() {
     return this.firstName + " " + this.lastName;
