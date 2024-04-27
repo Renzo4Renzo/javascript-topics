@@ -1,7 +1,7 @@
 /*
     MODULE PATTERN
     -Allows to split up code into smaller, reusable pieces.
-    -Allows to keep some variables/methods private: if we don’t explicitly export a certain value, that value is not available outside the module.
+    -Allows to keep some variables/methods private: if a value is not explicitly exported, it won't be available outside the module.
 
     NOTE: Modules should be created as IIFEs that always return an object.
 
