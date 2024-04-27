@@ -1,5 +1,5 @@
 /*
-  ASYNC EXAMPLES
+  ASYNC FUNCTIONS - EXAMPLES
   Calling Backend APIs
   Loading files
   Timers/Intervals
