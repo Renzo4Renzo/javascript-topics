@@ -27,7 +27,8 @@ function memoize(func) {
       return cache[key];
     }
 
-    const result = func.apply(this, args);
+    const result = func(...args);
+    // const result = func.apply(this, args);
     cache[key] = result;
 
     return result;
