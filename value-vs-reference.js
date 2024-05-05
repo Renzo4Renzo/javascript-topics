@@ -45,6 +45,20 @@ let myArray = [1, 2, 3];
 console.log("addToArrayRef(myArray):", addToArrayRef(myArray));
 console.log("myArray:", myArray);
 
+console.log("\n===============COMPARING: VALUE============");
+const number1 = 1;
+const number2 = number1;
+
+console.log("1 === 1:", number2 === 1); //Same!
+console.log("number1 === number2:", number1 === number2); //Same!
+
+console.log("\n===============COMPARING: REFERENCE============");
+const obj1 = { key1: "abc" };
+const obj2 = obj1;
+
+//console.log(`{ key1: "abc" } === { key1: "abc" }:`, obj2 === { key1: "abc" }); //Not the same!
+console.log("obj1 === obj2:", obj1 === obj2); //Same!
+
 console.log("\n===============MUTABLE VS INMUTABLE============");
 //NOTICE: Reassignment (full change) is not the same as mutable (partial change)!
 let primitiveInmutable = "Renzo";
