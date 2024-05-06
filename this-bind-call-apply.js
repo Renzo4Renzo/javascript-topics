@@ -4,17 +4,18 @@
 
   POSSIBLE VALUES FOR THIS
   1. If called in the global execution context, "THIS" will refer to the Global object.
-  2. If called inside an object method, "THIS" will refer to the object.
-  3. If called inside a function, "THIS" will refer to the Global object (or "undefined" if strict mode is enabled).
-  4. In arrow functions, "THIS" is inherited from the lexical context (outer scope) where the arrow function was defined.
-  5. If called in an event listener, "THIS" will refer to the DOM element that fired the event.
+  2. If called inside a regular function:
+     - For an object method, "THIS" will refer to the object.
+     - For a function not within an object, "THIS" will refer to the Global object.
+  3. In arrow functions, "THIS" is inherited from the lexical context (outer scope) where the arrow function was defined.
+  4. If called in an event listener, "THIS" will refer to the DOM element that fired the event.
+  5. If called in a callback, "THIS" will refer to the Global object (NOTE: Use an arrow function to inherit "this" from the outer scope).
   6. The methods "bind", "call" and "apply" can be used to set manually the value of THIS:
     - Bind creates a new function, but it does not execute it (it could be executed later).
     - Call and apply invoke inmediately the method.
     All three methods allow you send an an optional list of arguments: 
     - For Bind and Call, you send them separated by commas.
     - For Apply, you send them in an array.
-  7. If called in a callback or an event handler, "THIS" will refer to the Global object ("undefined" if strict mode is enabled).
 */
 "use strict";
 
@@ -97,6 +98,8 @@ console.log(`APPLY: ${sayMyName.apply(me2)}`);
 console.log(`APPLY: ${greeting.apply(me2, ["FRA"])}`);
 
 console.log(" \n====================THIS: CALLBACK================");
+//    -Value in Node.js: "Timeout object"
+//    -Value in browser: Window
 function PersonWithCallback(name) {
   this.name = name;
   setTimeout(function () {
