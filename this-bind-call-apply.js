@@ -53,7 +53,7 @@ const napoleon = new Person("Napoleon");
 napoleon.talkMe();
 
 console.log(" \n====================THIS: INSIDE FUNCTION================");
-//    -Value in Node.js: "[Object: global]"
+//    -Value in Node.js: "[Object: global]" / undefined
 //    -Value in browser: Window
 talkMe(); // undefined because "use strict" in enabled
 
@@ -65,7 +65,7 @@ const her = {
 };
 
 // undefined because "use strict" in enabled, otherwise it will be "[Object: global]" (Node.js) or Window (browser)
-console.log(`THIS - ARROW FUNCTION: ${her.sayName(her)}`);
+console.log(`THIS - ARROW FUNCTION: ${her.sayName()}`);
 
 console.log(" \n====================THIS: EVENT LISTENER================");
 console.log("Run the file 'this-event-listener.html' using the VS Live Server Plugin");
