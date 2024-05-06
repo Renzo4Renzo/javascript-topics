@@ -13,7 +13,6 @@
 console.log("===============SHALLOW COPY WITH SPREAD OPERATOR============");
 const shallowOriginalSO = [1, 2, 3, 4];
 const shallowCloneSO = [...shallowOriginalSO];
-console.log("shallowOriginalSO === shallowCloneSO:", shallowOriginalSO === shallowCloneSO);
 shallowCloneSO.push(5);
 console.log("shallowOriginalSO:", shallowOriginalSO);
 console.log("shallowCloneSO:", shallowCloneSO);
@@ -21,7 +20,6 @@ console.log("shallowCloneSO:", shallowCloneSO);
 console.log("\n===============SHALLOW COPY WITH OBJECT.ASSIGN()============");
 const shallowOriginalOA = [1, 2, 3, 4];
 const shallowCloneOA = Object.assign([], shallowOriginalOA);
-console.log("shallowOriginalOA === shallowCloneOA:", shallowOriginalOA === shallowCloneOA);
 shallowCloneOA.push(5);
 console.log("shallowOriginalOA:", shallowOriginalOA);
 console.log("shallowCloneOA:", shallowCloneOA);
@@ -31,7 +29,6 @@ const shallowOriginalNA = [1, 2, 3, 4];
 const shallowNestedNA = [5, 6, 7];
 shallowOriginalNA.push(shallowNestedNA);
 const shallowCloneNA = [...shallowOriginalNA];
-console.log("shallowOriginalNA === shallowCloneNA:", shallowOriginalNA === shallowCloneNA);
 shallowNestedNA.push(8);
 console.log("shallowOriginalNA:", shallowOriginalNA);
 console.log("shallowCloneNA:", shallowCloneNA); //They have the same values in the nested property!
@@ -44,7 +41,6 @@ const shallowOriginalOF = {
 };
 Object.freeze(shallowOriginalOF);
 const shallowCloneOF = Object.assign({}, shallowOriginalOF);
-console.log("shallowOriginalOF === shallowCloneOF:", shallowOriginalOF === shallowCloneOF);
 shallowOriginalOF.first = 40; //Doesn't apply the change!
 shallowOriginalOF.third.a = 10; //Applies the change!
 console.log("shallowOriginalOF:", shallowOriginalOF);
@@ -58,7 +54,6 @@ const deepOriginalDC = {
   third: { a: 1, b: 2, c: 3 },
 };
 const deepCloneDC = JSON.parse(JSON.stringify(deepOriginalDC));
-console.log("deepOriginalDC === deepCloneDC:", deepOriginalDC === deepCloneDC);
 deepCloneDC.first = 30;
 deepCloneDC.third.d = 10;
 console.log("deepOriginalDC:", deepOriginalDC);
@@ -71,7 +66,6 @@ const deepOriginalSC = {
   third: { a: 1, b: 2, c: 3 },
 };
 const deepCloneSC = structuredClone(deepOriginalSC);
-console.log("deepOriginalSC === deepCloneSC:", deepOriginalSC === deepCloneSC);
 deepCloneSC.first = 30;
 deepCloneSC.third.d = 10;
 console.log("deepOriginalSC:", deepOriginalSC);
@@ -90,9 +84,7 @@ const deepClone = (obj) => {
 };
 
 const deepOriginalOF = { key1: 20, key2: 30, key3: [1, 2, 3] };
-
 const deepCloneOF = deepClone(deepOriginalOF);
-console.log("deepOriginalOF === deepCloneOF:", deepOriginalOF === deepCloneOF);
 
 deepCloneOF.key1 = 10;
 deepCloneOF.key3.push(4);
