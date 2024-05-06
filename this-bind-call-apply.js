@@ -18,12 +18,12 @@
 */
 "use strict";
 
-// 1. If called in the global execution context, "THIS" will refer to the Global object:
+console.log("====================THIS: GLOBAL EXECUTION CONTEXT================");
 //   -Value in Node.js: "{}"
 //   -Value in browser: Window
 console.log(this);
 
-// 2. If called inside an object method, "THIS" will refer to the object.
+console.log(" \n====================THIS: INSIDE OBJECT METHOD================");
 function talkMe() {
   return console.log(`FUNCTION TALKME:`, this);
 }
@@ -51,12 +51,12 @@ function Person(name) {
 const napoleon = new Person("Napoleon");
 napoleon.talkMe();
 
-// 3. If called inside a function, "THIS" will refer to the Global object:
-//       -Value in Node.js: "[Object: global]"
-//       -Value in browser: Window
+console.log(" \n====================THIS: INSIDE FUNCTION================");
+//    -Value in Node.js: "[Object: global]"
+//    -Value in browser: Window
 talkMe(); // undefined because "use strict" in enabled
 
-// 4. In arrow functions, "THIS" is inherited from the lexical context (outer scope) where the arrow function was defined.
+console.log(" \n====================THIS: ARROW FUNCTION================");
 const her = {
   name: "Daniela",
   surname: "Sarati",
@@ -64,12 +64,12 @@ const her = {
 };
 
 // undefined because "use strict" in enabled, otherwise it will be "[Object: global]" (Node.js) or Window (browser)
-console.log(`THIS FOR HER: ${her.sayName(her)}`);
+console.log(`THIS - ARROW FUNCTION: ${her.sayName(her)}`);
 
-// 5. If called in an event listener, "THIS" will refer to the DOM element that fired the event.
-// RUN the file: this-event-listener.html
+console.log(" \n====================THIS: EVENT LISTENER================");
+console.log("Run the file 'this-event-listener.html' using the VS Live Server Plugin");
 
-// 6. The methods "bind", "call" and "apply" can be used to set manually the value of THIS.
+console.log(" \n====================THIS: BIND, CALL, APPLY================");
 function sayMyName() {
   return `I am ${this.name}`;
 }
@@ -93,22 +93,27 @@ console.log(`BIND: ${greetMarcus()}`);
 console.log(`CALL: ${sayMyName.call(me2)}`);
 console.log(`CALL: ${greeting.call(me2, "FRA")}`);
 
-console.log(`APPLY: ${sayMyName.call(me2)}`);
-console.log(`APPLY: ${greeting.call(me2, ["FRA"])}`);
+console.log(`APPLY: ${sayMyName.apply(me2)}`);
+console.log(`APPLY: ${greeting.apply(me2, ["FRA"])}`);
 
-//7. If called in a callback or an event handler, "THIS" will refer to the Global object ("undefined" if strict mode is enabled).
+console.log(" \n====================THIS: CALLBACK================");
 function PersonWithCallback(name) {
   this.name = name;
-
+  setTimeout(function () {
+    console.log(this);
+  }, 100);
   // To resolve this you can use:
   // 1. The .bind(this)
+  // setTimeout(
+  //   function () {
+  //     console.log(this);
+  //   }.bind(this),
+  //   100
+  // );
   // 2. An arrow function
-  // setTimeout(function () {
-  //   console.log(this);
+  // setTimeout(() => {
+  //   console.log(`CALLBACK INSIDE FUNCTION:`, this);
   // }, 100);
-  setTimeout(() => {
-    console.log(`CALLBACK INSIDE FUNCTION:`, this);
-  }, 100);
 }
 
 const mariah = new PersonWithCallback("Mariah");
