@@ -16,11 +16,12 @@
     All three methods allow you send an an optional list of arguments: 
     - For Bind and Call, you send them separated by commas.
     - For Apply, you send them in an array.
+    All three methods return you the global object when "null" is passed as context. You can't chain any of these methods.
 */
 "use strict";
 
 console.log("====================THIS: GLOBAL EXECUTION CONTEXT================");
-//   -Value in Node.js: "{}"
+//   -Value in Node.js: "{}" (module's scope, not global scope)
 //   -Value in browser: Window
 console.log(this);
 
@@ -53,7 +54,7 @@ const napoleon = new Person("Napoleon");
 napoleon.talkMe();
 
 console.log(" \n====================THIS: INSIDE FUNCTION================");
-//    -Value in Node.js: "[Object: global]" / undefined
+//    -Value in Node.js: Global Object / undefined
 //    -Value in browser: Window
 talkMe(); // undefined because "use strict" in enabled
 
@@ -64,8 +65,8 @@ const her = {
   sayName: () => this.name + " " + this.surname,
 };
 
-// undefined because "use strict" in enabled, otherwise it will be "[Object: global]" (Node.js) or Window (browser)
-console.log(`THIS - ARROW FUNCTION: ${her.sayName()}`);
+// undefined
+console.log(`THIS - ARROW FUNCTION:`, her.sayName());
 
 console.log(" \n====================THIS: EVENT LISTENER================");
 console.log("Run the file 'this-event-listener.html' using the VS Live Server Plugin");
@@ -96,6 +97,18 @@ console.log(`CALL: ${greeting.call(me2, "FRA")}`);
 
 console.log(`APPLY: ${sayMyName.apply(me2)}`);
 console.log(`APPLY: ${greeting.apply(me2, ["FRA"])}`);
+
+const mockUser = {
+  giveThis() {
+    return this;
+  },
+};
+
+// -Value in Node.js: Global Object (null when "use strict" in enabled)
+// -Value in browser: Window
+console.log(`BIND: ${mockUser.giveThis.bind(null)()}`);
+console.log(`CALL: ${mockUser.giveThis.call(null)}`);
+console.log(`APPLY: ${mockUser.giveThis.apply(null)}`);
 
 console.log(" \n====================THIS: CALLBACK================");
 //    -Value in Node.js: "Timeout object"
