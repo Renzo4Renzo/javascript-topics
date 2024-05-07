@@ -71,45 +71,6 @@ console.log(`THIS - ARROW FUNCTION:`, her.sayName());
 console.log(" \n====================THIS: EVENT LISTENER================");
 console.log("Run the file 'this-event-listener.html' using the VS Live Server Plugin");
 
-console.log(" \n====================THIS: BIND, CALL, APPLY================");
-function sayMyName() {
-  return `I am ${this.name}`;
-}
-
-function greeting(language) {
-  if (language === "FRA") return `Salut ${this.name}!`;
-  else return `Hello ${this.name}!`;
-}
-
-const me2 = {
-  name: "Marcus",
-};
-
-const sayMarcusName = sayMyName.bind(me2);
-const greetMarcus = greeting.bind(me2, "ENG");
-
-console.log(sayMarcusName);
-console.log(`BIND: ${sayMarcusName()}`);
-console.log(`BIND: ${greetMarcus()}`);
-
-console.log(`CALL: ${sayMyName.call(me2)}`);
-console.log(`CALL: ${greeting.call(me2, "FRA")}`);
-
-console.log(`APPLY: ${sayMyName.apply(me2)}`);
-console.log(`APPLY: ${greeting.apply(me2, ["FRA"])}`);
-
-const mockUser = {
-  giveThis() {
-    return this;
-  },
-};
-
-// -Value in Node.js: Global Object (null when "use strict" in enabled)
-// -Value in browser: Window
-console.log(`BIND: ${mockUser.giveThis.bind(null)()}`);
-console.log(`CALL: ${mockUser.giveThis.call(null)}`);
-console.log(`APPLY: ${mockUser.giveThis.apply(null)}`);
-
 console.log(" \n====================THIS: CALLBACK================");
 //    -Value in Node.js: "Timeout object"
 //    -Value in browser: Window
