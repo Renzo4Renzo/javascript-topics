@@ -10,23 +10,21 @@
   NOTE: Async/await is not used for creating promises, only for handling them.
 */
 
-async function regularFunction() {
+async function regularAsyncAwait() {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
     // throw new Error("We couldn't connect to the server!");
     const json = await response.json();
-    console.log("================ASYNC/AWAIT================"); //NOTE: This is here only to show logs in the proper order
     console.log(json);
   } catch (error) {
     console.log(error);
   }
 }
 
-const arrow = async () => {
+const arrowAsyncAwait = async () => {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/todos/3");
     const json = await response.json();
-    console.log("================ASYNC/AWAIT IN ARROW FUNCTIONS================"); //NOTE: This is here only to show logs in the proper order
     console.log(json);
   } catch (error) {
     console.log(error);
@@ -34,23 +32,22 @@ const arrow = async () => {
 };
 
 async function runSequentially() {
-  //ASYNC/AWAIT
-  await regularFunction();
+  console.log("================ASYNC/AWAIT================");
+  await regularAsyncAwait();
 
-  //ASYNC/AWAIT IN IIFE
-  (async function () {
+  console.log("================ASYNC/AWAIT IN IIFE================");
+  await (async function () {
     try {
       const response = await fetch("https://jsonplaceholder.typicode.com/todos/2");
       const json = await response.json();
-      console.log("================ASYNC/AWAIT IN IIFE================"); //NOTE: This is here only to show logs in the proper order
       console.log(json);
     } catch (error) {
       console.log(error);
     }
   })();
 
-  //ASYNC/AWAIT IN ARROW FUNCTIONS
-  await arrow();
+  console.log("================ASYNC/AWAIT IN ARROW FUNCTIONS================");
+  await arrowAsyncAwait();
 }
 
 runSequentially();

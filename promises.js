@@ -1,8 +1,11 @@
 /*
   PROMISE
-  An object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+  It's a placeholder for a value that will come in the future, since the value depends on an asynchronous action. 
+  When a promise retrieve: 
+    - A success value, it is resolved.
+    - A failure reason, it is rejected.
+  They have a built-in error handling: the .catch method.
   They avoid the "callback hell" by chaining asynchronous operations in a more readable way.
-  There is a built-in error handling: the .catch method.
 
   PROMISE STATIC METHODS
   They take multiple promises and returns a single promise:

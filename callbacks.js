@@ -7,7 +7,7 @@
   CALLBACK
   A function passed as an argument to another function and executed after the first function completes its operation.
   Event listeners work by passing callbacks as parameters.
-  No built-in mechanism for error handling.
+  They don't have a built-in mechanism for error handling.
 
   CALLBACK HELL
   Too many callbacks: code becomes deeply nested and difficult to read.
@@ -69,7 +69,7 @@ function eatPizza(success, callback) {
   if (success) {
     setTimeout(() => {
       console.log("4. Pizza has been eaten...");
-      callback(true);
+      callback();
     }, 1000);
   } else {
     callback(false);
