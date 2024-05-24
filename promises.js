@@ -7,7 +7,7 @@
   They have a built-in error handling: the .catch method.
   They avoid the "callback hell" by chaining asynchronous operations in a more readable way.
 
-  PROMISE STATIC METHODS
+  PROMISE COMBINATORS
   They take multiple promises and returns a single promise:
 
     1. PROMISE.ALL()
