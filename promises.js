@@ -48,7 +48,6 @@ const weatherPromise = getWeather();
 weatherPromise.then(onSuccess, onError);
 
 //NOTE: The setTimeout functions below are there to guarantee the code inside runs sequentially
-
 //CHAINING PROMISES
 setTimeout(() => {
   function getWeatherCP() {
