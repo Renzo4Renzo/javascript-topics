@@ -47,8 +47,9 @@ function onError(error) {
 const weatherPromise = getWeather();
 weatherPromise.then(onSuccess, onError);
 
+//NOTE: The setTimeout functions below are there to guarantee the code inside runs sequentially
+
 //CHAINING PROMISES
-//NOTE: SetTimeout is here to guarantee the code inside runs after the code above
 setTimeout(() => {
   function getWeatherCP() {
     return new Promise(function (resolve, reject) {
@@ -91,11 +92,10 @@ setTimeout(() => {
 }, 1000);
 
 //PROMISE.ALL()
-//NOTE: SetTimeout is here to guarantee the code inside runs after the code above
 setTimeout(() => {
   const promiseA1 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 300, "Resolved: promiseA1");
-    // setTimeout(reject, 300, "Error in promiseA1!");
+    // setTimeout(resolve, 300, "Resolved: promiseA1");
+    setTimeout(reject, 300, "Error in promiseA1!");
   });
 
   const nonPromiseA2 = "Resolved: nonPromiseA2"; //Non-promise
@@ -107,27 +107,26 @@ setTimeout(() => {
   Promise.all([promiseA1, nonPromiseA2, promiseA3])
     .then((values) => {
       console.log(values);
-      console.log("\n============PROMISE.ALLSETTLED()============"); //NOTE: This is here only to show logs in the proper order
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => console.log("\n============PROMISE.ALLSETTLED()============")); //NOTE: This is here only to show logs in the proper order
 }, 2000);
 
 //PROMISE.ALLSETTLED()
-//NOTE: SetTimeout is here to guarantee the code inside runs after the code above
 setTimeout(() => {
   const promiseALL1 = Promise.resolve(3);
   const promiseALL2 = new Promise((resolve, reject) => setTimeout(reject, 100, "foo"));
 
-  Promise.allSettled([promiseALL1, promiseALL2]).then((value) => {
-    console.log(value);
-    console.log("\n============PROMISE.ANY()============"); //NOTE: This is here only to show logs in the proper order
-  });
+  Promise.allSettled([promiseALL1, promiseALL2])
+    .then((value) => {
+      console.log(value);
+    })
+    .finally(() => console.log("\n============PROMISE.ANY()============")); //NOTE: This is here only to show logs in the proper order
 }, 3000);
 
 //PROMISE.ANY()
-//NOTE: SetTimeout is here to guarantee the code inside runs after the code above
 setTimeout(() => {
   const slowlyDone = new Promise((resolve, reject) => {
     setTimeout(resolve, 500, "slowlyDone promise resolvedk!");
@@ -146,15 +145,14 @@ setTimeout(() => {
   Promise.any([slowlyDone, quicklyDone, rejectedPromiseAny])
     .then((value) => {
       console.log(value);
-      console.log("\n============PROMISE.RACE() - FIRST RESOLVED WINS============"); //NOTE: This is here only to show logs in the proper order
     })
     .catch((err) => {
       console.log(err); //This only triggers when all promises are rejected!
-    });
+    })
+    .finally(() => console.log("\n============PROMISE.RACE() - FIRST RESOLVED WINS============")); //NOTE: This is here only to show logs in the proper order
 }, 4000);
 
 //PROMISE.RACE(): FIRST RESOLVED WINS
-//NOTE: SetTimeout is here to guarantee the code inside runs after the code above
 setTimeout(() => {
   const promiseR1 = new Promise((resolve, reject) => {
     setTimeout(() => resolve("promiseR1 resolved and wins the race!"), 200);
@@ -167,15 +165,14 @@ setTimeout(() => {
   Promise.race([promiseR1, promiseR2])
     .then((response) => {
       console.log(response);
-      console.log("\n============PROMISE.RACE() - REJECTED WINS============"); //NOTE: This is here only to show logs in
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => console.log("\n============PROMISE.RACE() - REJECTED WINS============")); //NOTE: This is here only to show logs in the proper order
 }, 5000);
 
 //PROMISE.RACE(): REJECTED WINS
-//NOTE: SetTimeout is here to guarantee the code inside runs after the code above
 setTimeout(() => {
   const promiseR3 = new Promise((resolve, reject) => {
     setTimeout(() => reject("promiseR3 rejected and wins the race!"), 100);
