@@ -110,7 +110,7 @@ setTimeout(() => {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => console.log("\n============PROMISE.ALLSETTLED()============")); //NOTE: This is here only to show logs in the proper order
+    .finally(() => console.log("\n============PROMISE.ALLSETTLED()============"));
 }, 2000);
 
 //PROMISE.ALLSETTLED()
@@ -122,7 +122,7 @@ setTimeout(() => {
     .then((value) => {
       console.log(value);
     })
-    .finally(() => console.log("\n============PROMISE.ANY()============")); //NOTE: This is here only to show logs in the proper order
+    .finally(() => console.log("\n============PROMISE.ANY()============"));
 }, 3000);
 
 //PROMISE.ANY()
@@ -148,7 +148,7 @@ setTimeout(() => {
     .catch((err) => {
       console.log(err); //This only triggers when all promises are rejected!
     })
-    .finally(() => console.log("\n============PROMISE.RACE() - FIRST RESOLVED WINS============")); //NOTE: This is here only to show logs in the proper order
+    .finally(() => console.log("\n============PROMISE.RACE() - FIRST RESOLVED WINS============"));
 }, 4000);
 
 //PROMISE.RACE(): FIRST RESOLVED WINS
@@ -168,7 +168,7 @@ setTimeout(() => {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => console.log("\n============PROMISE.RACE() - REJECTED WINS============")); //NOTE: This is here only to show logs in the proper order
+    .finally(() => console.log("\n============PROMISE.RACE() - REJECTED WINS============"));
 }, 5000);
 
 //PROMISE.RACE(): REJECTED WINS
