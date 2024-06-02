@@ -128,7 +128,7 @@ setTimeout(() => {
 //PROMISE.ANY()
 setTimeout(() => {
   const slowlyDone = new Promise((resolve, reject) => {
-    setTimeout(resolve, 500, "slowlyDone promise resolvedk!");
+    setTimeout(resolve, 500, "slowlyDone promise resolved!");
     // setTimeout(reject, 500, "Reject: slowlyDone!");
   });
 
