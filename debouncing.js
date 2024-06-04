@@ -12,6 +12,7 @@ const count = document.querySelector(".increment_count");
 let pressedCount = 0;
 let triggerCount = 0;
 
+//CUSTOM DEBOUNCER
 const myDebouncer = (callback, delay) => {
   let timeoutId;
   return function (...args) {

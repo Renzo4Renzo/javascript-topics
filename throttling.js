@@ -12,6 +12,7 @@ const count = document.querySelector(".increment_count");
 let pressedCount = 0;
 let triggerCount = 0;
 
+//CUSTOM THROTTLER
 const myThrottle = (callback, delay) => {
   let isRunning = false;
   return function (...args) {
