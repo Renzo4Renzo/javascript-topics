@@ -1,6 +1,6 @@
 /*
   DEBOUNCING
-  Optimization technique to execute a function only when the user stops performing a certain action AND a specific cooling/delay time has passed.
+  Optimization technique to execute a function only when the user stops performing a certain action for a specified amount of time.
 
   NOTE: If not used properly, this can introduce latency in the user interface.
 */
