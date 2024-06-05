@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Hover the mouse over this text and check the console!</h3>
+
+    <h2>Bubbling</h2>
+    <div id="div_bubbling" style="background-color: aqua; padding: 10px">
+      <p id="p_bubbling" style="background-color: blue; padding: 10px">
+        <span id="span_bubbling" style="background-color: yellowgreen; padding: 10px">
+          <button id="btn_bubbling">Click Me</button>
+        </span>
+      </p>
+    </div>
+
+    <h2>Event Delegation</h2>
+    <div id="div_delegation" style="background-color: grey; padding: 10px">
+      <p id="p_delegation" style="background-color: rosybrown">
+        <button id="btn1_delegation">Button 1</button>
+        <button id="btn2_delegation">Button 2</button>
+      </p>
+    </div>
+
+    <script src="events.js"></script>
+  </body>
+</html>
