@@ -13,6 +13,10 @@
 
     EVENT DELEGATION
     Approach that manages the event on the parent element rather than the location where the event was initially triggered.
+
+    NOTE:
+    -event.target -> Original target when the event was triggered.
+    -event.currentTarget / this.target -> Current element where the event is being fired.
 */
 
 const h3 = document.querySelector("h3");
