@@ -19,5 +19,5 @@
     2. WEB APIs (Additional tools like DOM manipulation, HTTP Requests, timers, etc. that can't be perform through the core JavaScript).
     3. Callback queue (async functions are added here when they are ready to be executed).
   
-  Event Loop: It is constantly running process that monitors both the callback queue and the call stack. When functions in the callback queue are ready and the call stack is empty, these functions are passed to the call stack.
+  Event Loop: It's a constantly running process that monitors both the callback queue and the call stack. When functions in the callback queue are ready and the call stack is empty, these functions are passed to the call stack.
 */
