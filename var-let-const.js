@@ -1,63 +1,63 @@
 /*
   VAR
-    Could NOT be Block-scoped (Function-scoped OR Global-scoped)
-      A variable with the same name outside of the block scope CAN override the value in the one living inside (or viceversa)
-    You CAN redeclare VAR
-    Declaration is hoisted as UNDEFINED
-
-  CONST and LET 
-    Could be Block-scoped
-      A variable with the same name outside of the block scope CAN'T override the value in the one living inside (or viceversa).
-
-    You CAN'T redeclare them (in the same scope).
-    You CAN'T reassign CONST, but you CAN reassign LET:
-    If CONST is an object or array, you can change the values inside of them because CONST only ensures the reference remains constant. You need Object.freeze() to make the values inside of them inmutable.
-    Declaration is hoisted as VARIABLE NOT INITIALIZED.
-
-    VARIABLE SHADOWING 
-    Several variables with the same names but different values can coexist if:
-     1. They belong to different scopes.
-     2. Variables living in a block scope are declared with const/let.
-    Otherwise, this results in illegal shadowing.
+    Scope: Function-scoped or Global-scoped (not Block-scoped).
+    Behavior: A variable with the same name outside a block can override one inside (or vice versa).
+    Redeclaration: Allowed.
+    Hoisting: Declared as undefined.
+  CONST & LET
+    Scope: Block-scoped.
+    Behavior: A variable with the same name outside a block cannot override one inside.
+    Redeclaration: Not allowed in the same scope.
+    Reassignment:
+      CONST: Cannot be reassigned.
+      LET: Can be reassigned.
+      Exception: If CONST is an object or array, its values can change (only the reference remains constant). Use Object.freeze() to make elements inmutable.
+    Hoisting: Declared but not initialized.
+  Variable Shadowing
+    Multiple variables with the same name but different values can coexist if:
+      1. They belong to different scopes.
+      2. The inner variable is declared with LET or CONST.
+    Otherwise, it results in illegal shadowing.
 */
 console.log("\n===============VAR============");
-console.log(variable1);
+console.log("vVariable:", vVariable); //undefined
 
 if (true) {
-  var variable1 = "Hello";
+  var vVariable = "Hello";
 }
-var variable1 = "Bye";
-console.log(variable1);
+var vVariable = "Bye";
+console.log("vVariable:", vVariable);
 
 console.log("\n===============LET/CONST============");
 if (true) {
-  // console.log(variable2); // ReferenceError: Cannot access 'variable2' before initialization
-  let variable2 = "Hello";
-  //let variable2 = "Bye"; //Cannot redeclared scoped variables
+  // console.log(lcVariable); // ReferenceError: Cannot access 'lcVariable' before initialization
+  let lcVariable = "Hello";
+  //let lcVariable = "Bye"; //Cannot redeclared scoped variables
 }
 
-// console.log(variable2); //ReferenceError: variable2 is not defined
+// console.log(lcVariable); //ReferenceError: lcVariable is not defined
 
 console.log("\n===============VARIABLE SHADOWING============");
-var a = 2;
-let b = 5;
+var vshadowA = 2;
+let vshadowB = 5;
 
 if (true) {
-  let a = 3;
-  //var b = 0; //ILLEGAL SHADOWING: Cannot redeclared block-scope variable "b"
-  console.log("a:", a);
-  //console.log(b);
+  let vshadowA = 3;
+  //var vshadowB = 0; //ILLEGAL SHADOWING: Cannot redeclared block-scope variable "b"
+  console.log("vshadowA:", vshadowA);
+  //console.log(vshadowB);
 }
-console.log("a:", a);
-console.log("b:", b);
+console.log("vshadowA:", vshadowA);
+console.log("vshadowB:", vshadowB);
 
 /*
-  NOTE: The following code print "5" five times because "var" is not block-scoped, so when the event loop returns the timeouts to the main thread, the final value of "i" is used for each callback.
-  You have to use "let i=0" if you want to print 0,1,2,... instead.
+  This prints "5" five times because "var" is function-scoped, not block-scoped.  
+  By the time the timeouts execute, the loop has completed, and "i" is 5 in each callback.  
+  Use "let i = 0" instead to print 0, 1, 2, 3, 4.
 */
 console.log("\n===============FOR LOOP: VAR IS NOT BLOCKED SCOPED============");
 for (var i = 0; i < 5; i++) {
   setTimeout(function () {
-    console.log(i);
+    console.log("Loop Counter:", i);
   }, i * 100);
 }
